@@ -10,5 +10,31 @@
   <%= @list.description %>
 </p>
 
+<h1>Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due at</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @list.items.each do |item| %>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= item.due_at %></td>
+        <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_list_item_path(@list) %> |
 <%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>

@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:index, :new, :create]
 
-  # GET /items
-  # GET /items.json
+  # GET /lists/1/items.json
   def index
-    @items = Item.all
+    @items = Item.where(list: @list)
   end
 
   # GET /items/1
@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   def show
   end
 
-  # GET /items/new
+  # GET /lists/1/items/new
   def new
     @item = Item.new
   end
@@ -21,14 +21,14 @@ class ItemsController < ApplicationController
   def edit
   end
 
-  # POST /items
-  # POST /items.json
+  # POST /lists/1/items
+  # POST /lists/1/items.json
   def create
-    @item = Item.new(item_params)
+    @item = @list.items.new(item_params)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @list, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to list_url(@item.list), notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +67,12 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
+    def set_list
+      @list = List.find(params[:list_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:title, :notes, :due_at, :list_id)
+      params.require(:item).permit(:title, :notes, :due_at)
     end
 end

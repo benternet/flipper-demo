@@ -15,10 +15,5 @@
   <%= @item.due_at %>
 </p>
 
-<p>
-  <strong>List:</strong>
-  <%= @item.list %>
-</p>
-
 <%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Back', list_path(@item.list) %>
