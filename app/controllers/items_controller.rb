@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   # GET /lists/1/items.json
   def index
-    @items = Item.where(list: @list)
+    @items = @list.items
   end
 
   # GET /items/1
@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
 
   # GET /lists/1/items/new
   def new
-    @item = Item.new
+    @item = @list.items.new
   end
 
   # GET /items/1/edit
@@ -65,11 +65,11 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item.where(list_id: current_user.list_ids).find(params[:id])
     end
 
     def set_list
-      @list = List.find(params[:list_id])
+      @list = current_user.lists.find(params[:list_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
