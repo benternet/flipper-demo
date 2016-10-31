@@ -1,40 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @list.title %>
-</p>
+<h1><%= @list.title %> <small><%= link_to '', edit_list_path(@list), class: ['glyphicon', 'glyphicon-pencil'] %></small></h1>
 
-<p>
-  <strong>Description:</strong>
-  <%= @list.description %>
-</p>
+<%= @list.description %>
 
-<h1>Items</h1>
+<h2>Items</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Due at</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
+<table class="table table-striped">
   <tbody>
     <% @list.items.each do |item| %>
       <tr>
-        <td><%= item.title %></td>
-        <td><%= item.due_at %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to item.title, item %></td>
+        <td class="right-align">
+          <%= link_to '', item, method: :delete, data: { confirm: 'Are you sure?' }, class: ['glyphicon', 'glyphicon-trash'], title: 'Destroy' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2"><%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Item'.html_safe, new_list_item_path(@list) %></td>
+    </tr>
+  </tfoot>
 </table>
 
-<br>
-
-<%= link_to 'New Item', new_list_item_path(@list) %> |
-<%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>

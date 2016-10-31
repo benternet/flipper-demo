@@ -1,26 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Lists</h1>
+<h1>To Do Lists</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
+<table class="table table-striped">
   <tbody>
     <% @lists.each do |list| %>
       <tr>
-        <td><%= list.title %></td>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to list.title, list %></td>
+        <td class="right-align"><%= link_to '', list, method: :delete, data: { confirm: 'Are you sure?' }, class: ['glyphicon', 'glyphicon-trash'], title: 'Destroy' %></td>
       </tr>
     <% end %>
   </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2"><%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New List'.html_safe, new_list_path %></td>
+    </tr>
+  </tfoot>
 </table>
-
-<br>
-
-<%= link_to 'New List', new_list_path %>

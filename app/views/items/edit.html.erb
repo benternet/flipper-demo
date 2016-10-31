@@ -1,6 +1,7 @@
+<p id="notice"><%= notice %></p>
+
 <h1>Editing Item</h1>
 
 <%= render 'form', list: @list, item: @item %>
 
-<%= link_to 'Show', @item %> |
-<%= link_to 'Back', list_path(@item.list) %>
+<%= link_to 'Back', @item.list %>

@@ -13,20 +13,20 @@
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :notes %>
-    <%= f.text_area :notes %>
+    <%= f.text_area :notes, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :due_at %>
-    <%= f.datetime_select :due_at %>
+    <%= f.text_field :due_at, 'data-provide' => 'datepicker', class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Item", class: ['btn', 'btn-primary'] %>
   </div>
 <% end %>
