@@ -1,9 +1,12 @@
 require 'test_helper'
 
 class ItemsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @list = lists(:one)
     @item = items(:one)
+    sign_in users(:one)
   end
 
   test "should get new" do
