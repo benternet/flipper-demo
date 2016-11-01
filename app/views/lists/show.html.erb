@@ -1,4 +1,9 @@
-<h1><%= @list.title %> <small><%= link_to '', edit_list_path(@list), class: ['glyphicon', 'glyphicon-pencil'] %></small></h1>
+<h1><%= @list.title %>
+  <small>
+    <%= link_to '', edit_list_path(@list), class: ['glyphicon', 'glyphicon-pencil'] %>
+    <%= link_to '', new_list_import_path(@list), class: ['glyphicon', 'glyphicon glyphicon-import'] %>
+  </small>
+</h1>
 
 <%= @list.description %>
 

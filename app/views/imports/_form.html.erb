@@ -1,0 +1,10 @@
+<%= form_tag({ controller: 'imports', action: 'create', list: list }, multipart: true) do %>
+  <div class="field">
+    <%= label_tag :file, "File" %>
+    <%= file_field_tag :file, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Import", class: ['btn', 'btn-primary'] %>
+  </div>
+<% end %>

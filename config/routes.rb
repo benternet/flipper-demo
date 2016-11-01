@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :lists do
     resources :items, shallow: true
+    resources :imports, only: [:new, :create]
   end
 
   root to: "lists#index"
