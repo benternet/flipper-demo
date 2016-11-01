@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Flipper::UI.app(FlipperDemo.flipper) => '/flipper'
+
   devise_for :users
   resources :lists do
     resources :items, shallow: true

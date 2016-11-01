@@ -8,6 +8,9 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 gem 'devise', '~> 4.2'
+gem 'flipper', '~> 0.9.2'
+gem 'flipper-ui', '~> 0.9.2'
+gem 'flipper-active_record', '~> 0.9.2'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'sass-rails', '~> 5.0'
