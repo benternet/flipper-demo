@@ -8,7 +8,7 @@ class ImportsController < ApplicationController
   # POST /imports
   # POST /imports.json
   def create
-    import_params
+    ImportJob.perform_now(@list, import_params.tempfile.path)
     redirect_to @list, notice: 'Import was successfully created.'
   end
 
