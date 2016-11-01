@@ -48,4 +48,15 @@ class ListsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to lists_url
   end
+
+  test "should not show the import link when feature isn't enabled" do
+    get list_url(@list)
+    assert_select '.glyphicon-import', false
+  end
+
+  test "should show the import link when the feature is enabled" do
+    FlipperDemo.flipper.enable(:import)
+    get list_url(@list)
+    assert_select '.glyphicon-import'
+  end
 end
